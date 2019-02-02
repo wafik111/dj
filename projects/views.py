@@ -15,13 +15,20 @@ def show_users(request):
 
 def create_project(request,id):
     project_owner= get_object_or_404(Users,pk=id)
+
     if request.method == 'POST':
         # populate the form with the data
         form = ProjectForm(request.POST)
+        form2 = project_img(request.POST)
+
         if form.is_valid():
             Projects=form.save(commit=False)
+            images = form.save(commit=False)
+            images.project = 1
             Projects.owner = project_owner
+            # print(project_owner.)
             Projects.save()
+            images.save()
             return HttpResponseRedirect(reverse('Home'))
     # if request GET create empty form
     else:

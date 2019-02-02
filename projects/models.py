@@ -14,7 +14,13 @@ class Users(models.Model):
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)
     ##########################################
+class Tags(models.Model):
+    tag_name = models.CharField(max_length=50)
 
+    # project = models.ManyToManyField(Projects)
+    def __str__(self):
+        return self.tag_name
+#################################################
 class Projects(models.Model):
     title = models.CharField(max_length=150)
     body = models.TextField()
@@ -29,11 +35,14 @@ class Projects(models.Model):
     end_date = models.DateField()
     creation_date = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(Users, on_delete=models.CASCADE)
+    tag = models.ManyToManyField(Tags)
+
 
     def __str__(self):
         return self.title
 
 #################################################################
+
 
 class Project_images(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
@@ -74,8 +83,6 @@ class Report_projects(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     reason = models.TextField(default='default')
 
-class Tags(models.Model):
-    tag_name = models.CharField(max_length=50)
-    project = models.ManyToManyField(Projects)
+
 
 # Create your models here.

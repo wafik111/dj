@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm,forms
 from .models import *
 
 class ProjectForm(ModelForm):
@@ -18,5 +18,6 @@ class project_img(ModelForm):
     class Meta:
         model = Project_images
         fields = ['project_img']
+
 
 
