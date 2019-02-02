@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%for project in key%}
+<h4>{{project}}<a href="{% url 'rate' project.id %}"> Rate </a></h4>
+{% endfor %}
+<a href="{% url 'show_users' %}">Show Users</a>
+</body>
+</html>

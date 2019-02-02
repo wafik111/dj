@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for member in members %}
+<h3>{{member}} <a href="{% url 'create_project' member.id %}">create project </a> </h3>
+{% endfor %}
+<a href="{% url 'Home' %}">Show Projects</a>
+</body>
+</html>

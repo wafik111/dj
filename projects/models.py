@@ -48,10 +48,16 @@ class Comments(models.Model):
 class Rates(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
-    rate = models.SmallIntegerField()
+    rate_options=(
+        ('1',1),('2',2),('3',3),
+        ('4',4),('5',5),
+    )
+    rate = models.CharField(max_length=1, choices=rate_options,
+                                default='5',
+                                )
 
     def __str__(self):
-        return 'the Rates is '
+        return '%s'% (self.project)
 
 class Donations(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
@@ -59,12 +65,12 @@ class Donations(models.Model):
     donation = models.PositiveIntegerField(default=0)
 
 class Report_comments(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comments, on_delete=models.CASCADE)
     reason = models.TextField(default='default')
 
 class Report_projects(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     reason = models.TextField(default='default')
 
