@@ -1,45 +1,98 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .forms import *
 from .models import *
+from django.db.models import Avg
+from django.forms import modelformset_factory
 
 
 def index(request):
     f= Projects.objects.all()
-    return render(request,'projects/projects.html',{'key':f})
+    return render(request,'projects/projects.html',{'key':f,'t':rate})
 
 def show_users(request):
     members= Users.objects.all()
     return render(request,'projects/users.html',{'members':members})
 
+
+def remove(request,id):
+    Projects.objects.get(id=id).delete()
+    return redirect(index)
+
+
+###########################################################################################
+def info(request,id):
+    selected_project= Projects.objects.get(id=id)
+    if request.method == 'POST':
+        comment_form = CommentModelForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = get_object_or_404(Users, pk=2)  # will be replaced with session user
+            comment.project = selected_project
+            comment.save()
+            return HttpResponseRedirect(reverse('info', args=[selected_project.id]))
+    else:
+        pics = selected_project.project_images_set.all
+        rate = selected_project.rates_set.all().aggregate(Avg('rate'))
+        comment_form = CommentModelForm()
+        comments= selected_project.comments_set.all()
+        context = {'project': selected_project, 'rate': rate['rate__avg'],
+                   'form': comment_form ,'comments' : comments,'pic' : pics}
+        return render(request, 'projects/project_info.html', context)
+
+    ##################################################################################
+
 def create_project(request,id):
     project_owner= get_object_or_404(Users,pk=id)
+    PicFormset = modelformset_factory(Project_images, fields=('project_img',), extra=4)
 
     if request.method == 'POST':
         # populate the form with the data
         form = ProjectForm(request.POST)
-        form2 = project_img(request.POST)
+        formset = PicFormset(request.POST,request.FILES)
 
-        if form.is_valid():
-            Projects=form.save(commit=False)
-            images = form.save(commit=False)
-            images.project = 1
-            Projects.owner = project_owner
-            # print(project_owner.)
-            Projects.save()
-            images.save()
+
+        if form.is_valid() and formset.is_valid():
+            print('entered if ')
+            projects=form.save(commit=False)
+            projects.owner = project_owner
+            projects.save()
+            # tags_str = request.POST['tag_name'].split(',')
+            # for tag in tags_str:
+            #     tag = Tags(tag_name=tag)
+            #     tag.save()
+            #     projects.tag.add(tag)
+            for pic in formset:
+
+
+                # picture = Project_images(project_img=pic.cleaned_data['project_img'], project=projects)
+
+                # picture.save()
+
+
             return HttpResponseRedirect(reverse('Home'))
-    # if request GET create empty form
     else:
         form = ProjectForm()
-        form2 = project_img()
-        context={
-            'form':form,
-            'form2':form2,
-            'owner':project_owner,
+        formset = PicFormset(queryset=Project_images.objects.none())
+        context = {
+            'form': form,
+            'project_owner': project_owner,
+            'formset': formset,
         }
-    return render(request,'projects/index.html',context)
+
+    return render(request, 'projects/index.html', context)
+
+    # # if request GET create empty form
+    # else:
+    #     form = ProjectForm()
+    #     form2 = project_img()
+    #     context={
+    #         'form':form,
+    #         'form2':form2,
+    #         'owner':project_owner,
+    #     }
+    # return render(request,'projects/index.html',context)
 
 def rate(request,id):
     selected_project = get_object_or_404(Projects,pk=id)

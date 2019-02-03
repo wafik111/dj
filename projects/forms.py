@@ -14,10 +14,14 @@ class Rate_project(ModelForm):
         model = Rates
         fields = ['rate']
 
-class project_img(ModelForm):
+class TagModelForm(ModelForm):
     class Meta:
-        model = Project_images
-        fields = ['project_img']
+        model = Tags
+        fields = ['tag_name', ]
 
 
 
+class CommentModelForm(ModelForm):
+    class Meta:
+        model = Comments
+        fields = ['comment']

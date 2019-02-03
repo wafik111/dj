@@ -6,7 +6,7 @@ class Users(models.Model):
     phone = models.IntegerField(null=False)
     email = models.EmailField(null=False)
     password = models.CharField(max_length=50, null=False)
-    birthdate = models.DateField(blank=True)
+    birthdate = models.DateField(null=True,blank=True)
     country = models.CharField(max_length=100, blank=True)
     facebook = models.URLField(blank=True)
     profile_img = models.ImageField(upload_to="imag_up/", default="imag_up/none/n0.jpg")

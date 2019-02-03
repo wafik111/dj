@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>title:{{project.title}}</h3>
+<p>body:{{project.body}}</p>
+<h5>cat:{{project.category}}</h5>
+<h5>Money:{{project.target_money}}</h5>
+<h5>start from :{{project.start_date}} to {{project.end_date}}</h5>
+<h4> rated as {{rate}} from our users </h4>
+<h5>title:{{project}}</h5>
+<img src="{{ pic.project_img.url }}"/>
+<h4> owner for this project <a href="">{{project.owner}}</a>
+<h2> Comments </h2>
+    <ul>
+        {% for i in comments %}
+            <p> {{i.comment}} <br/> &emsp;&emsp;<font color ="#f00"> by {{i.user}} </font></p>
+        {%endfor%}
+    </ul>
+<form method="post" action="">
+    {% csrf_token %}
+ <table>
+    {{ form.as_table }}
+    </table>
+
+<input type="submit" value="comment">
+    <a href="{% url 'Home' %}"> HOME </a>
+</form>
+
+</h4>
+
+</body>
+</html>

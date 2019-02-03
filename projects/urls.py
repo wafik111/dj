@@ -6,5 +6,7 @@ urlpatterns = [
     path('users/',show_users, name="show_users"),
     path('save/<int:id>',create_project , name="create_project"),
     path('rate/<int:id>',rate, name="rate"),
+    path('info/<int:id>',info, name="info"),
+    path('delete/<int:id>',remove, name="delete"),
 
 ]
