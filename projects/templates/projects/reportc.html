@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <p> we are very sory that you have this bad experiment
+    please tell us what bothers you about that comment!
+ </p>
+<form method="post" action="">
+    {% csrf_token %}
+ <table>
+    {{ form.as_table }}
+    </table>
+
+<input type="submit" value="Report">
+    <a href="{% url 'Home' %}"> HOME </a>
+</form>
+</body>
+</html>

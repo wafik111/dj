@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p> you donation will help our project reaching its goal thanks alot !</p>
+<form method="post" action="">
+    {% csrf_token %}
+ <table>
+    {{ form.as_table }}
+    </table>
+
+<input type="submit" value="Donate">
+    <a href="{% url 'Home' %}"> HOME </a>
+</body>
+</html>

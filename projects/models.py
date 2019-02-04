@@ -71,17 +71,21 @@ class Rates(models.Model):
 class Donations(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
-    donation = models.PositiveIntegerField(default=0)
+    donation = models.PositiveIntegerField(blank=False)
 
 class Report_comments(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comments, on_delete=models.CASCADE)
     reason = models.TextField(default='default')
+    def __str__(self):
+        return self.reason
 
 class Report_projects(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     reason = models.TextField(default='default')
+    def __str__(self):
+        return self.reason
 
 
 

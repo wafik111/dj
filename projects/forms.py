@@ -25,3 +25,19 @@ class CommentModelForm(ModelForm):
     class Meta:
         model = Comments
         fields = ['comment']
+
+class ReportComment(ModelForm):
+    class Meta:
+        model = Report_comments
+        fields = ['reason']
+
+class ReportProject(ModelForm):
+    class Meta:
+        model = Report_projects
+        fields = ['reason']
+
+
+class DonateProject(ModelForm):
+    class Meta:
+        model = Donations
+        fields = ['donation']
