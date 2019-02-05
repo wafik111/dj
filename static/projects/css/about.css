@@ -1,0 +1,59 @@
+.bread-crumb{
+    margin-top: 50px;
+    padding-top: 10px;
+    background-color: whitesmoke;
+}
+.about-me h1{
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 60px;
+}
+.about-me img
+{
+    max-width: 600px;
+    height: 600px;
+    margin: auto;
+}
+.price-table {
+    background-color: #fff;
+}
+.price-table .price-box{
+    font-size: 19px;
+    line-height: 250%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    margin: 16px;
+    background-color: #367185;
+    color: #fff;
+    border-radius: 50%;
+}
+.text-success {color: #333333}
+.price-table .price-box a{color: #333}
+.read-more-hover{
+    width: 322px;
+    height: 349px;
+    border-radius: 50%;
+    margin-top: -391px;
+    margin-left: 24px;
+    position: absolute;
+    padding: 43px;
+    background-color: aliceblue;
+    display: none;
+}
+.read-more-hover .lead-1{
+    font-size: 22px;
+    font-family: 'Sedgwick Ave Display', cursive;
+    animation: rotateInDownLeft 2s ease-in-out ; 
+}
+.read{ cursor: pointer;font-size: 15px;}
+.read-more-hover .fa{
+    color: #367185;
+    cursor: pointer;
+}
+.panel-group{
+    
+}
+.panel-default>.panel-heading {
+    color: #fff;
+    background-color: rgb(54, 113, 133);
+    border-color: #da232e;

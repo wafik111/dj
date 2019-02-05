@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block login %}
+<div class="log_form tab-pane active" id="login">
+    <h3 class="lead text-center">Login Form</h3>
+        <form role="form" class=" form-horizontal">
+            <br><br>
+            <form method="post" class="CP" action="" >
+                <h1 class="text-center">LOG IN</h1>
+                {% csrf_token %}
+                <table class="form-group col-lg-12 col-xs-12">
+                  {{ form.as_table }}
+                </table>
+                <textarea class="tags col-xs-12" name="tag" cols="30" rows="5" placeholder="Enter Your tags in the following pattern tag1,tag2,tag3"></textarea><br>
+                <br><br>
+                <a href=""><input class=" submit col-xs-12 btn btn-success" type="submit" value="submit"></a>
+            </form>
+            <br><br>
+        </form>
+</div>
+{% endblock login %}    
