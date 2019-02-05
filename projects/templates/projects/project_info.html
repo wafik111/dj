@@ -6,9 +6,9 @@
 </head>
 <body>
 {%for i in pic %}
-<img src="{{i.project_img}}"/>
+<img src="{{i.project_img.url}}"/>
 {%endfor%}
-<a href="{%url 'reportp' project.id %}"> Report </a>
+<a href="{%url 'reportp' project.id %}" target="_blank"> Report </a>
 <h2><a href="{% url 'donate' project.id %}">Donate </a></h2>
 <h3>title:{{project.title}}</h3>
 <p>body:{{project.body}}</p>
@@ -23,7 +23,7 @@
     <ul>
         {% for i in comments %}
             <p> {{i.comment}} <br/> &emsp;&emsp;<font color ="#f00"> by {{i.user}} </font> <br/>
-                <a href="{% url 'reportc' i.id%}"> Report </a>
+                <a href="{% url 'reportc' i.id%}" target="_blank"> Report </a>
 
 
             </p>

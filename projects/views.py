@@ -39,7 +39,7 @@ def project_info(request,id):
         rate = selected_project.rates_set.all().aggregate(Avg('rate'))
         comment_form = CommentModelForm()
         comments= selected_project.comments_set.all()
-        context = {'project': selected_project, 'rate': int(rate['rate__avg']),
+        context = {'project': selected_project, 'rate': rate['rate__avg'],
                    'form': comment_form ,'comments' : comments,'pic' : pics}
         return render(request, 'projects/project_info.html', context)
 
