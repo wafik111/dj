@@ -2,25 +2,27 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import *
 from .models import *
+from projects.models import *
 from django.contrib.auth import ( authenticate,login,logout, get_user_model)
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    data = Profile.objects.get(first_name='reham')
-    print('ffffffffffffffff',data)
+    data = Profile.objects.get(id=2)
+    data_projects =Projects.objects.get(owner=data.user)
     # data_projects =Projects.objects.get(id=data.auther_name_id)
     details={
-        'names':data.first_name,
-        'lname':data.last_name,
+        'names':data.user,
+        # 'lname':data.user,
         'phone':data.phone,
-        'email':data.email,
-        'password':data.password,
+        # 'email':data.email,
+        # 'password':data.password,
         'country':data.country,
         'BD':data.birthdate,
-        'facebook':data.facebook,
+        # 'facebook':data.facebook,
+        'project': data_projects
      }
     print(details)
-    return render(request, 'profile.html',details)
+    return render(request, 'users/profile.html',details)
 
 def register(request):
     
@@ -53,14 +55,15 @@ def login_user(request):
         login(request,user)
         users = User.objects.get(username=username)
         user_profile= users.objects.Profile_set.all()
+        # print('ccccccccccccccccccccc',user_profile)
         return render(request,"users/home.html",{'username':users,"profile":user_profile
     
     
     })    
         
     return render(request,"users/login.html",{"form":form})
-def index(request):
-    return HttpResponse('hello')
+# def index(request):
+#     return HttpResponse('hello')
 
     
     
