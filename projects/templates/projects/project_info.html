@@ -1,45 +1,217 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{%for i in pic %}
-<img src="{{i.project_img.url}}"/>
-{%endfor%}
-<a href="{%url 'reportp' project.id %}" target="_blank"> Report </a>
-<h2><a href="{% url 'donate' project.id %}">Donate </a></h2>
-<h3>title:{{project.title}}</h3>
-<p>body:{{project.body}}</p>
-<h5>cat:{{project.category}}</h5>
-<h5>Money:{{project.target_money}}</h5>
-<h5>start from :{{project.start_date}} to {{project.end_date}}</h5>
-<h4> rated as {{rate}}/5 from our users </h4>
-<h5>title:{{project}}</h5>
-<img src="{{ pic.project_img.url }}"/>
-<h4> owner for this project <a href="">{{project.owner}}</a>
-<h2> Comments </h2>
-    <ul>
-        {% for i in comments %}
-            <p> {{i.comment}} <br/> &emsp;&emsp;<font color ="#f00"> by {{i.user}} </font> <br/>
-                <a href="{% url 'reportc' i.id%}" target="_blank"> Report </a>
+{% extends "base.html" %}
+{% block project_info %}
+<style>
+    .project-description{
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        font-family: Lato,Arial,sans-serif;
+    }
+    .imgProject{
+        width: 100%;
+        height: 400px;
+        padding: 0;
+        border: none;
+        box-shadow: 1px 3px 4px -1px #888;
+    }
+    .title{
+        padding: 20px 0;
+        border-bottom: 1px dotted #8888;
+        font-style: oblique;
+    }
+    .content{
+        padding: 14px;
+        font-size: 16px;
+        line-height: 2.2;
+        overflow-y: scroll;
+    }
+    label{
+        display: none;
+    }
+    textarea{
+        width: 197%;
+        height: 69px;
+        border: none;
+        border-bottom: 1px solid #eee;
+        padding: 10px;
+    }
+    input[type=button], input[type=reset], input[type=submit]
+    {
+        float: right;
+        background-color: rgb(241, 177, 48);
+        border: none;
+        padding: 7px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 7px;
+    }
+    #comment,.users_comments{
+        box-shadow: 0px 0px 11px 4px #eee;
+        height: 143px;
+    }
+    form{
+        padding: 10px;
+    }
+    .users_comments{
+        margin: 45px 0px;
+        padding: 50px 21px;
+        background-color: #fff;
+        height: auto;
+    }
+    .user_name{
+        text-transform: capitalize;
+        font-size: 21px;
+        font-family: monospace;
+        color: #888;
+        padding-top: 9px;
+    }
+    .user_comment{
+        margin: 5px 168px;
+        text-transform: capitalize;
+        font-size: 16px;
+        color: #222;
+    }
+    h4{
+        border: none;
+        border-bottom: 1px dotted #888;
+        padding: 10px;
+        margin-bottom: 45px;
 
-
-            </p>
+    }
+    .layer-white{
+        background-color:rgb(229, 233, 218);
+        border-radius: 3px;
+        border: 1px solid  rgb(92, 128, 14);
+        padding: 5px 20px;
+        color: #405610;
+    }
+    .right-side-project{
+        padding: 0 32px;
+    }
+    .target_mony{
+        font-size: 54px;
+        padding: 10px;
+        font-family: cursive;
+    }
+    .user-owner{
+        border: 1px solid #eee;
+        padding: 20px;
+        font-size: 16px;
+        text-transform: capitalize
+    }
+    .donate{
+        width: 100%;
+        margin: 10px 0;
+        background-color: #f1b130;
+        color: #fff;
+        font-size: 26px;
+    }
+    .fa-user-circle{
+        font-size: 44px;
+        color: #b6bf9c;
+        margin-right: 14px;
+    }
+    .Creport {
+        color: #000;
+        background-color: transparent;
+        border-color: transparent;
+        text-decoration: underline;
+    }
+    .parts{
+        border: 1px solid #eee;
+        width: 100px;
+        height: 100px;
+        margin: 10px 0;
+    }
+</style>
+<section class="container">
+    <div class="project-description col-lg-8 col-xs-12">
+           
+        <!-- <img class="parts imgProject" src="{{i.project_img}}"/> -->
+        {%for i in pic %}
+            <img class="parts" src="{{i.project_img.url}}"/>
         {%endfor%}
-    </ul>
-<form method="post" action="">
-    {% csrf_token %}
- <table>
-    {{ form.as_table }}
-    </table>
+        <h1 class="title">{{project.title}}</h1>
+        <section class="story-project">
+        <ul class=" nav nav-tabs" role="tablist">
+            <li role="presentation" class="pin_log_form" class="active">
+                <a href="#story" aria-controls="story" role="tab" data-toggle="tab">Story</a>
+            </li>
+        </ul>
 
-<input type="submit" value="comment">
-    <a href="{% url 'Home' %}"> HOME </a>
-</form>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="log_form tab-pane active" id="story">
+                <div class="content">
+                    <p class="leap">{{project.body}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="reg_form tab-pane " id="comment">
+                <form method="post" action="">
+                    {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <input type="submit" value="comment">
 
-</h4>
+                
+                <ul class="users_comments col-lg-12">
+                    <h4> Comments </h4>
+                    {% for i in comments %}
+                        <i class="fa fa-user-circle col-xs-1"></i>
+                        <span class="user_name col-xs-9">{{i.user}} </span><br>
+                        <span class="user_comment col-xs-12"> {{i.comment}} <a href="{% url 'reportc' i.id%}" target="_blank"> <div class="Creport btn btn-danger">Report</div></a></span>
+                       
+                        <br>
+                        <hr>
+                    {%endfor%}
+                </ul>
+                </form>
+        </div>
+        <a href="{% url 'reportp' project.id%}" target="_blank"><div class="report btn btn-success" style="width: 100%;">Report Project </div></a>
+        </section>
+    </div>
+    <div class="right-side-project col-lg-4 col-xs-12">
+            <div class="layer-white campaign-state show-for-medium mb20 js-campaign-state-large" data-identifier="trending" style="opacity: 1;">
+                <div class="cs-text-contain">
+                <div class="fixed-width-column">
+                    <i class="precent fa fa-line-chart" aria-hidden="true"></i>
+                    This campaign is trending!
+                </div>
+                </div>
+            </div>
+            <div class="target_mony">
+                <p>{{project.target_money}}$</p>
+            </div>
+            <div class="rate">
+                <p>{{rate}}/5 from our users</p>
+                <!--{%for i in tags%}-->
+                    <!--{{i}}-->
+                <!--{%endfor%}-->
+            </div>
+            <div class="Date">
+                <p>start from {{project.start_date}} to {{project.end_date}}</p>
+            </div>
+            <div class="user-owner">
+                created in {{project.start_date}}
+                <hr>
+                <i class="fa fa-user-circle"></i>{{project.owner}}
+            </div>
+            <a href="{% url 'donate' project.id %} " target="_blank"><button class="form-group btn btn-defult donate">Donate</button></a>
+            {%for donate in project.project_donaters%}
+                {{donate.user}} <br/>
+            {%endfor%}
+            {%if project.owner == user.profile and project.donation_check %}
+                <a href="{% url 'delete' project.id%}"> Delete </a>
+            {%endif%}
 
-</body>
-</html>
+
+
+    </div>
+</section>
+
+
+
+
+{% endblock %}

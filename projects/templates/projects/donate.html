@@ -1,18 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p> you donation will help our project reaching its goal thanks alot !</p>
-<form method="post" action="">
-    {% csrf_token %}
- <table>
-    {{ form.as_table }}
-    </table>
+{% extends "base.html" %}
+{% block donation_part %}
+<style>
+    .content-info{
+        border: 1px solid #eee;
+        border-radius: 24px;
+        /* background-color: rgba(0,0,0,.075); */
+        padding: 20px 0 100px 0px;
+    }
+    .pragraph{
+        font-size: 28px;
+        text-align: center;
+        padding: 56px;
+        font-family: 'Merriweather', serif;
+        width: 50%;
+        margin: auto;
+    }
+    .textfield form{
+        text-align: center;
+        text-align: -webkit-center;
+        width: 50%;
+        margin: auto;
+        padding: 76px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 0px 12px 3px #888;
+    }
+    .textfield label{
+        display: none;
 
-<input type="submit" value="Donate">
-    <a href="{% url 'Home' %}"> HOME </a>
-</body>
-</html>
+    }
+    .textfield input[type=number]
+    {
+        width: 250px;
+        height: 90px;
+        font-size: 82px;
+        border: none;
+        color: green;
+        text-align: right;
+    }
+    input[type=submit]{
+        display: block;
+        width: 100%;
+        font-size: 28px;
+    }
+    .textfield table{
+        display: inline-block;
+        margin-left: -100px;
+    }
+    .partm,.partm2{
+        position: absolute;
+        font-size: 82px;
+        display: inline-block;
+        margin-top: -18px;
+        margin-left: -150px;
+        color: green;
+    }
+    .partm2{
+        margin-left: 0;
+    }
+    .container{
+        font-family: 'Merriweather', serif;
+    }
+</style>
+<div class="container content-info">
+    <div class="row">
+        <div class="form-group">
+            <p class="pragraph"> you donation will help our project reaching its goal thanks alot !</p>
+        </div>
+        <div class="part-donate form-group">
+            <div class="textfield">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="partm">$</div><table>
+                        {{ form.as_table }}
+                        </table><div class="partm2">.00</div>
+                    <input type="submit" class="btn btn-success" value="Donate">
+                    <br><br>
+                    <hr>
+                    <a href="{% url 'Home' %}"> HOME </a>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock donation_part%}
