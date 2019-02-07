@@ -1,31 +1,20 @@
 from django.db import models
 from users.models import *
-# class Users(models.Model):
-#     first_name = models.CharField(max_length=50, null=False)
-#     last_name = models.CharField(max_length=50, null=False)
-#     phone = models.IntegerField(null=False)
-#     email = models.EmailField(null=False)
-#     password = models.CharField(max_length=50, null=False)
-#     birthdate = models.DateField(null=True,blank=True)
-#     country = models.CharField(max_length=100, blank=True)
-#     facebook = models.URLField(blank=True)
-#     profile_img = models.ImageField(upload_to="imag_up/", default="imag_up/none/n0.jpg")
+from django.db.models import Avg
 
-#     def __str__(self):
-#         return "%s %s" % (self.first_name, self.last_name)
     ##########################################
 class Tags(models.Model):
     tag_name = models.CharField(max_length=50)
 
-    # project = models.ManyToManyField(Projects)
+
     def __str__(self):
         return self.tag_name
 #################################################
 class Projects(models.Model):
     title = models.CharField(max_length=150)
     body = models.TextField()
-    category_options = (('so', 'social'),
-                        ('sp', 'sport'),
+    category_options = (('social', 'social'),
+                        ('sport', 'sport'),
                         )
     category = models.CharField(max_length=2, choices=category_options,
                                 default='social',
@@ -40,6 +29,22 @@ class Projects(models.Model):
 
     def __str__(self):
         return self.title
+    def first_image(self):
+        return self.project_images_set.all()[:1]
+    def project_rate(self):
+        rate = self.rates_set.all().aggregate(Avg('rate'))
+        t = rate['rate__avg']
+        return t
+    def project_donaters(self):
+        return self.donations_set.all()
+
+    def donation_check(self):
+        total=0
+        for donate in self.donations_set.all():
+            total+= donate.donation
+        return total < (self.target_money/4)
+
+
 
 #################################################################
 

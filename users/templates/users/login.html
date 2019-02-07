@@ -1,17 +1,52 @@
 {% extends "base.html" %}
 {% block login %}
+<style>
+    .login{
+        height: 400px;
+        width: 50%;
+        margin: auto;
+        padding: 32px;
+        border: 1px solid #ddd;
+        font-size: 15px;
+        font-family: 'Quattrocento Sans', sans-serif;
+    }
+    h1{
+        font-family: 'Acme', sans-serif;
+    }
+    th{
+        padding: 6px;
+    }
+    input{
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        width: 100%;
+        height: 29px;
+        border-radius: 5px;
+        border: 1px solid #888;
+        background-color: white;
+        font-size: 16px;
+    }
+    .btn-success{
+        font-size: 20px;
+        height: 40px;
+        background-color: #f1b130;
+        border: #f1b130;
+    }
+   
+</style>
 <div class="log_form tab-pane active" id="login">
-            <br><br>
-            <form method="post" class="CP" action="" >
-                <h1 class="text-center">LOG IN</h1>
-                {% csrf_token %}
-                <table class="form-group col-lg-12 col-xs-12">
-                  {{ form.as_table }}
-                </table>
-                <textarea class="tags col-xs-12" name="tag" cols="30" rows="5" placeholder="Enter Your tags in the following pattern tag1,tag2,tag3"></textarea><br>
-                <br><br>
-                <a href=""><input class=" submit col-xs-12 btn btn-success" type="submit" value="submit"></a>
-            </form>
-            <br><br>
+    <br><br>
+    <form method="post" class="CP" action="">
+        <h1 class="text-center">LOG IN</h1>
+        <br>
+        {% csrf_token %}
+        <table class="form-group col-lg-12 col-xs-12">
+            {{ form.as_table }}
+        </table>
+        <br><br>
+        <a href="{%url 'Home'%}"><input class=" submit col-xs-12 btn btn-success" type="submit" value="Log In"></a>
+    </form>
+    <br><br>
 </div>
-{% endblock login %}    
+{% endblock login %}

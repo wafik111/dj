@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block profile %}
+<!-- {%if username.is_authenticated%} -->
+<style>
+    li{
+        height: 35px;
+        padding: 10px;
+        padding-left: 0px;
+        list-style: none;
+    }
+    a{
+        color:#888;
+        text-align: center;
+    }
+    .info_data_projects a:hover li{
+        background-color: #888;
+        transition: 1s;
+        color: #fff;
+        border-radius:20px; 
+        text-decoration: none;
+    }
+    span{
+        font-size: 17px;
+        color: #222;
+    }
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-xs-12" style="height: 700px; font-size: 20px;font-family: fantasy;padding: 26px;  border-right: 1px solid #ccc;box-shadow: -9px 1px 17px -9px #888 inset;">
+
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar col-lg-12">
+                    <img class="col-lg-9 col-xs-12" style="margin-bottom:20px; border-radius: 50%;border: 15px solid #fcf2e4;width: 160px;height: 160px;" alt="" src="https://graph.facebook.com/v3.0/1099479200230015/picture?&height=100&width=100">
+                    <a  class="col-lg-3 col-xs-12" style="    text-align: center; margin: auto;margin: 73px 0 0 9px;font-size: 30px;"  target="_blank" href="https://scripteden.com/">{{user.first_name}}{{user.last_name}}</a>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="desc">
+                        <div class="form-group">Username : {{username}}<span></span></div>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="desc">
+                        <div class="form-group">Email : <span>{{user.email}}</span></div>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="desc">
+                        <div class="form-group">Phone : <span>{{data.phone}}</span></div>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="desc">
+                        <div class="form-group">country : <span>{{data.country}}</span></div>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="desc">
+                        <div class="form-group">Facebook Account  :<a href="{{facebook}}">{{facebook}}</a></div>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12">
+                        
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <!-- Start register form -->
+                                        <div class="container" style="    width: 888px;">
+                                                <h1>Edit Profile</h1>
+                                                  <hr>
+                                                <div class="row">
+                                                  <!-- left column -->
+                                                  <div class="col-md-3">
+                                                    <div class="text-center">
+                                                      <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                                                      <h6>Upload a different photo...</h6>
+                                                      
+                                                      <input type="file" class="form-control">
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  <!-- edit form column -->
+                                                  <div class="col-md-9 personal-info">
+                                                    <div class="alert alert-info alert-dismissable">
+                                                      <a class="panel-close close" data-dismiss="alert">×</a> 
+                                                      <i class="fa fa-coffee"></i>
+                                                      This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                                                    </div>
+                                                    <h3>Personal info</h3>
+                                                    <div class="log_form tab-pane active" id="login">
+                                                            <br><br>
+                                                            <form method="post" class="CP" enctype="multipart/form-data">
+                                                                <h1 class="text-center">LOG IN</h1>
+                                                                {% csrf_token %}
+                                                                <table class="form-group col-lg-12 col-xs-12">
+                                                                  {{ u_form}}
+                                                                  {{ p_form }}
+                                                                </table>
+                                                                <textarea class="tags col-xs-12" name="tag" cols="30" rows="5" placeholder="Enter Your tags in the following pattern tag1,tag2,tag3"></textarea><br>
+                                                                <br><br>
+                                                                <button type="submit"  class="b1 btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">EDIT</button>
+                                                                
+                                                            </form>
+                                                            <br><br>
+                                                    </div> 
+                                                   
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            <hr>
+                                        <!-- End register form -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                <div class="bottom">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="https://plus.google.com/+">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+	</div>
+        <div class="col-lg-6 col-xs-12">
+            <a class="btn btn-success  btn-sm" style="border-radius: 50%" href="home.html">
+                <i class="fa fa-plus-circle" style="font-size: 30px;"></i> 
+            </a>Donate
+            <hr>
+            <a href="{%url 'create_project' %}"><div class="btn btn-success">Create Project</div> </a>
+            <hr>
+            <div class="info_data_projects">
+                <div class="title"><h3>Projects</h3></div>
+                <ul style="    overflow-y: scroll;height: 150px;border: 1px solid #ddd;padding-left: 26px;padding-top: 5px;">
+                    {%for i in projects%}
+                    <a href="{% url 'info' i.id %}"><li>{{i}}<div class="rate text-right" style="display: inline-block;">50%</div>
+                        </li></a>
+                    {%endfor%}
+                    
+
+                </ul>
+            </div>
+            <div class="projects">
+                    <div class="title"><h3></h3></div>
+                    <ul class="col-xs-12" style="    overflow-y: scroll;height: 150px;border: 1px solid #ddd;padding-left: 26px;padding-top: 5px;">
+                        <a href="">
+                            <li class="col-lg-4 col-xs-6">
+                                <img src="projects/images/03.png" alt="img1">
+                                <div class="description">project title</div>
+                            </li>  
+                        </a>
+                        <a href="">
+                                <li class="col-lg-4 col-xs-6">
+                                    <img src="projects/images/03.png" alt="img1">
+                                    <div class="description">project title</div>
+                                </li>  
+                            </a>
+                            <a href="">
+                                    <li class="col-lg-4 col-xs-6">
+                                        <img src="projects/images/03.png" alt="img1">
+                                        <div class="description">project title</div>
+                                    </li>  
+                                </a>
+                    </ul>
+                </div>
+        </div>
+
+    </div>
+    
+</div>
+
+
+<!-- {%endif%} -->
+{% endblock profile %}

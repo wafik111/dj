@@ -85,14 +85,23 @@ WSGI_APPLICATION = 'getFund.wsgi.application'
 
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'test2',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-
 
 
 
@@ -138,3 +147,6 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT  = os.path.join(BASE_DIR,'media')
+
+LOGIN_REDIRECT_URL = 'home_page'
+LOGIN_URL = 'login'

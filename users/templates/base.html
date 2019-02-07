@@ -1,25 +1,30 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--explorer-->
-      <meta name="viewport" content="width=device-width, initial-scale=1"><!--for smart phone-->
-      <title> Donation </title>
-      <link rel="icon" href="http://static.tmimgcdn.com/img/favicon.ico">
-      <link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/bootstrap.min.css'%}">
-      <link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/animate.css'%}">
-      <link rel="stylesheet" href="{% static 'projects/css/font-awesome.min.css'%}"/>
-      <link rel="stylesheet" href="{% static 'projects/css/jquery.bxslider.css'%}">
-      <link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/style.css'%}">
-      <!-- fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
-      <style>
-          body{
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--explorer-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--for smart phone-->
+  <title> Donation </title>
+  <link rel="icon" href="http://static.tmimgcdn.com/img/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/bootstrap.min.css'%}">
+  <link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/animate.css'%}">
+  <link rel="stylesheet" href="{% static 'projects/css/font-awesome.min.css'%}" />
+  <link rel="stylesheet" href="{% static 'projects/css/jquery.bxslider.css'%}">
+  <link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/style.css'%}">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet">
+
+  <style>
+    body{
             background: url(white_leather) no-repeat center center fixed;
           }
           .navbar-form .form-control{
@@ -28,122 +33,146 @@
             border-top-left-radius: 0px;
             border-left: 1px solid #888;
         }
-        .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+        .btn-primary,.btn-primary:hover{
           background-color: transparent;
+          border-color: transparent;
+
         }
+      
       </style>
-    </head>
-    <body>
-        <nav class=" navv navbar navbar-inverse ">
-            <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Donation Site</a>
-              </div>
-          
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right sign " style="margin-top: -12px;">
-                  <li class="active">
-                    
-                    <a href="{%url 'login'%}"> <button type="button" style=" margin: 10px;    margin-top: -4px;" class="b1 btn btn-primary" >Sgin Up</button></a>
-                  </li>
-                  <li><!-- Large modal -->
-                    <a href="{%url 'register'%}"> <button type="button" style=" margin: 10px;    margin-top: -4px;" class="btn btn-primary" data-toggle="modal">Log In</button> </a>
-                  </li>
-                  <li></li>
-                </ul>
-                <form class="navbar-form navbar-left">
-                  <!-- <div class="col-lg-6"> -->
-                    <div class="input-group">
-                      <span class="input-group-btn">
-                        <button class="btn btn-success" type="button">Search</button>
-                      </span>
-                      <input type="text" class="form-control" placeholder="Search for...">
-                    </div><!-- /input-group -->
-                  <!-- </div>/.col-lg-6 -->
-                </form>
-                
-              </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-        <section class="profile-info">
-          {% block profile %}
-          {% endblock profile %}
-        </section>
-        <section class="project-info">
-          {% block project_info %}
-          {% endblock project_info %}
-        </section>
-        <section class="donation-part">
-            {% block donation_part %}
-            {% endblock donation_part %}
-        </section>
-        <section class="home">
-            {% block home %}
-            {% endblock home %}
-        </section>
-        <section class="home">
-            {% block createProject %}
-            {% endblock createProject %}
-        </section>
-        <section class="index">
-            {% block createProjectForm %}
-            {% endblock createProjectForm %}            
-        </section>
-        <section class="login">
-          {% block login %}
-          {% endblock login %}
-        </section>
-        <section class="register">
-          {% block Registion %}
-          {% endblock %}
-        </section>
-        <!-- Footer -->
-        <footer class="page-footer font-small blue pt-4 ">
 
-            <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left" style="margin-top: 20px; box-shadow: 1px 1px 26px 4px #888 inset;">
+</head>
 
-              <!-- Grid row -->
-              <div class="row">
+<body>
+  <nav class=" navv navbar navbar-inverse " style="height:60px;">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="font-size:40px" href="{%url 'home_page'%}"><d style="color:rgb(247, 178, 49);">D</d>S <i class="fal fa-comment"></i></a>
+      </div>
 
-                <!-- Grid column -->
-                <div class="col-xs-12 " style="margin-top: 75px;margin-bottom: 75px;">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right sign ">
+          <li>
+            <!-- Large modal -->
+            <a href="{%url 'home_page'%}"> <button type="button" class="btn btn-primary" data-toggle="modal"><i class="fa fa-home"></i>
+                Home </button>|
+            </a>
+          </li>
+          <li>
+            <!-- Large modal -->
+            <a href="{%url 'Home'%}"> <button type="button" class="btn btn-primary" data-toggle="modal"><i class="fa fa-user"></i>
+                Profile</button>|
+            </a>
+          </li>
+          <li>
 
-                  <!-- Content -->
-                  <h5 class="text-uppercase text-center">Project Content</h5>
-                  <p class="text-center">Here you can Add your project easy .</p>
+            <a href="{%url 'login'%}"> <button type="button" class="b1 btn btn-primary"><i class="fa fa-sign-in"></i>
+                login</button>|</a>
+          </li>
+          <li>
 
-                </div>
-                <!-- Grid column -->
+            <a href="{%url 'logout'%}"> <button type="button" class="b1 btn btn-primary"><i class="fa fa-sign-out"></i>
+                logout</button>|</a>
+          </li>
+          <li>
+            <!-- Large modal -->
+            <a href="{%url 'register'%}"> <button type="button" class="btn btn-primary" data-toggle="modal"><i class="fa fa-user-plus"></i>
+                sign up</button>
+            </a>
+          </li>
 
-                <hr class="clearfix w-100 d-md-none pb-3">               
+        </ul>
 
-              </div>
-              <!-- Grid row -->
 
-            </div>
-            <!-- Footer Links -->
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <section class="profile-info">
+    {% block profile %}
+    {% endblock profile %}
+  </section>
+  <section class="project-info">
+    {% block project_info %}
+    {% endblock project_info %}
+  </section>
+  <section class="donation-part">
+    {% block donation_part %}
+    {% endblock donation_part %}
+  </section>
+  <section class="home">
+    {% block home %}
+    {% endblock home %}
+  </section>
+  <section class="home">
+    {% block createProject %}
+    {% endblock createProject %}
+  </section>
+  <section class="index">
+    {% block createProjectForm %}
+    {% endblock createProjectForm %}
+  </section>
+  <section class="login">
+    {% block login %}
+    {% endblock login %}
+  </section>
+  <section class="register">
+    {% block Registion %}
+    {% endblock %}
+  </section>
+  <section class="report">
+      {% block report %}
+      {% endblock %}
+    </section>
+  <!-- Footer -->
+  <footer class="page-footer font-small blue pt-4 ">
 
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2018 Copyright:
-              <a href="https://mdbootstrap.com/education/bootstrap/"> ARHR TEAM</a>
-            </div>
-            <!-- Copyright -->
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left" style="    background-color: #212121;
+    color: #fff;margin-top: 20px; box-shadow: 1px 1px 26px 4px #888 inset;">
 
-          </footer>
-          <!-- Footer -->
-        <script  src="{% static 'projects/js/jquery-1.11.3.min.js'%}"></script>
-        <script  src="{% static 'projects/js/bootstrap.min.js'%}"></script>
-        <script  src="{% static 'projects/js/js.js'%}"></script>
-        <script  src="{% static 'projects/js/wow.min.js'%}"></script>
-        <script  src="{% static 'projects/js/jquery.nicescroll.min.js' %}"></script>
-    </body>
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-xs-12 " style="margin-top: 75px;margin-bottom: 75px;">
+
+          <!-- Content -->
+          <h5 class="text-uppercase text-center">Project Content</h5>
+          <p class="text-center">Here you can Add your project easy .</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> ARHR TEAM</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+  <script src="{% static 'projects/js/jquery-1.11.3.min.js'%}"></script>
+  <script src="{% static 'projects/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'projects/js/js.js'%}"></script>
+  <script src="{% static 'projects/js/wow.min.js'%}"></script>
+  <script src="{% static 'projects/js/jquery.nicescroll.min.js' %}"></script>
+</body>
+
 </html>
