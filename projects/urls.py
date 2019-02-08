@@ -10,5 +10,7 @@ urlpatterns = [
     path('reportc/<int:id>',report_comment, name="reportc"),
     path('reportp/<int:id>',report_project, name="reportp"),
     path('donate/<int:id>',donate_project, name="donate"),
+    path('catagory/',catagory_fun, name="catagory"),
+
 
 ]

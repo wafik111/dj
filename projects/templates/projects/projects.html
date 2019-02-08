@@ -2,144 +2,178 @@
 
 {%load static%}
 {% block home %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="all" href="{% static 'projects/css/projects.css'%}">
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Quattrocento+Sans" rel="stylesheet">
 <style>
-    li{
-        display: inline-block;
-    }
-    .navv{
-        display: none;
-    }
-    .create-btn{
-        background-color: rgb(247, 178, 49);
-        border-radius: 5px;
-        color: #fff;
-    }
-    .btn-primary {
-        color: #fff;
-        background-color: transparent;
-        border-color: transparent;
-        color: #222;
-        background-color: transparent;
-    }
-    .page-logo{
-        height: 500px;
-        margin-bottom: 20px;
-        box-shadow: 0px 1px 84px 25px #888;
-    }
-    .page-logo h1{
-        width: 43%;
-        font-size: 63px;
-        margin: 85px 0 0 86px;
-        font-family: initial;
-    }
     .start{
-        margin: 51px 0 0 90px;
+        margin-top: 51px;
         font-size: 31px;
-        width: 35%;
-        background-color: rgba(0,0,0,.5);
+        width: 50%;
+        background-color: rgba(241, 177, 48, 0.58);
         color: #fff;
         box-shadow: 1px 1px 6px 0px #222;
+        margin-left: -306px;
     }
-    .page-footer .container-fluid{
-        margin-top: 20px;
-        box-shadow: 1px 1px 26px 4px #888 inset;
-        color: #fff;
-        background-color: #888;
+    .carousel-caption {
+        padding: 75px;
+        font-family: initial;
+        margin-left: -300px;
+        height: 418px;
     }
-</style>
-<nav class="navbar navbar ">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand text-center " href="#" style="color: rgb(247, 178, 49);font-size:56px;padding:23px;">DS</a>
-        </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right sign " style="margin-top: 9px;">
-             <li><!-- Large modal -->
-                        <a href="{%url 'home_page'%}"> <button type="button" style=" margin: 10px;    margin-top: -4px;" class="btn btn-primary" data-toggle="modal">Home</button> </a>
-                     </li>
-                    <li><!-- Large modal -->
-                        <a href="{%url 'Home'%}"> <button type="button" style=" margin: 10px;    margin-top: -4px;" class="btn btn-primary" data-toggle="modal">Profile</button> </a>
-                    </li>
-            <li class="active">
-                    
-                    <a href="{%url 'login'%}"> <button type="button" style=" margin: 10px;    margin-top: -4px;" class="b1 btn btn-primary" >LOG IN</button></a>
-                  </li>
-                  <li><!-- Large modal -->
-                    <a href="{%url 'register'%}"> <button type="button" style=" margin: 10px;    margin-top: -4px;" class="btn btn-primary" data-toggle="modal">Sgin Up</button> </a>
-                  </li>
-        </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+    h1{
+        font-size: 50px;
+        font-family: 'Abril Fatface', cursive;
+        text-shadow: 6px 1px 20px #222;
+}
+    .thumbnail img{
+        width: 239px;
+        height: 183px;
+        border-radius: 26px;
+ 
+    }
+    .card-img{
+        width: 239px;
+        height: 183px;
+        border-radius: 26px;
+        margin-top: 15px;
+        margin-left: 20px;
+        border: 1px solid #eee;
+        background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-128.png) no-repeat center ;
 
+    }
+    ul{
+        margin-left: -50px;
+    }
+  
+</style>
+<nav class="navbar navbar-default " style="background-color: antiquewhite;">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="{% url 'catagory'  %}">Sports |</a></li>
+            <li><a href="#">Social</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {%for i in tagss%}
+                        <li style="width:100%"> <a href="">{{i}} </a></li>
+                        {%endfor%}
+                    </ul>
+            </li>
+       </ul>
+    </div>
+</nav>
 <div class="container-fluid">
-    <div class="row">
-        <div class="page-logo">
-            <img  src="{%static 'projects/images/bike.jpg'%}">
-            <div class="form-group">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="carousel-caption">
                 <h1>Fundraising for the people and causes you care about</h1>
-                <a href="#ref_projects"><div class="start btn btn-default">Get Start</div></a>
+                <a href="#ref_projects">
+                    <div class="start btn btn-default">Get Start</div>
+                </a>
             </div>
+            <div class="item active">
+                <img src="{%static 'projects/images/table.jpg'%}" alt="Los Angeles" style="width:100%;">
+            </div>
+
+            <div class="item">
+                <img src="{%static 'projects/images/working-area.jpg'%}" alt="Chicago" style="width:100%;">
+            </div>
+
+            <div class="item">
+                <img src="{%static 'projects/images/mbr-2000x1333.jpg'%}" alt="New york" style="width:100%;">
+            </div>
+
         </div>
+
     </div>
 </div>
+
 <div class="clear-fix"></div>
 <br>
 <br>
 <div class="container">
     <div class="row">
         <div class="projects-part" id="ref_projects">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-6 col-md-4">
-                        <h1 style="font-family: fantasy;" class="text-center">SITE PROJECTS</h1>
-                        <form class="navbar-form navbar-center">
-                                <!-- <div class="col-lg-6"> -->
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                    <button class="btn btn-warning" type="button">Search</button>
-                                    </span>
-                                    <input type="text" class="form-group " style="height: 34px;" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a ctagoriy">
-                                </div><!-- /input-group -->
-                                <!-- </div>/.col-lg-6 -->
-                            </form>
-                        <br>
-                        <br>
-                        <hr>
-                        <br>
-                        <ul id="myUL">
+            <div class="row">
+                <div class="col-lg-12 col-sm-6 col-md-4">
+                    <h1 style="font-family: fantasy;" class="text-center">SITE PROJECTS</h1>
+                    <form class="navbar-form navbar-center">
+                        <!-- <div class="col-lg-6"> -->
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning" type="button">Search</button>
+                            </span>
+                            <input type="text" class="form-group " style="height: 34px;" id="myInput" onkeyup="myFunction()"
+                                placeholder="Search for names.." title="Type in a ctagoriy">
+                        </div><!-- /input-group -->
+                        <!-- </div>/.col-lg-6 -->
+                    </form>
+                    <br>
+                    <br>
+                    <hr>
+                    <br>
+                    <ul id="myUL">
+                    {%if rate.rate_options > 5 %}
                         {%for project in key%}
                         <li>
-                                <div class="thumbnail col-xs-12" style="margin: 10px;;">
+                                <div class="thumbnail col-xs-12" style="margin: 10px;">
                                     {%for i in project.first_image%}
-                                <img src="{{i.project_img.url}}" alt="..." style="width:230px;height:230px;">
+                                   <div class="card-img"><img src="{{i.project_img.url}}" alt="..." ></div>
                                     {%endfor%}
+                                    <div class="caption" id="filter">
+                                        <a>
+                                            <h3>{{project}}</h3>
+                                        </a>
+                                        <p>You Can read more about this project.</p>
+                                        <p> rated as {{project.project_rate}}</p>
+                                        <p> donated {{project.donation_percent}} % of target</p>
+    
+                                        <p>
+                                            <a href="{% url 'info' project.id%}" class="btn btn-warning" role="button">More..</a>
+                                            <a href="{% url 'rate' project.id%}" class="btn btn-default" role="button">Rate</a>
+                                            <!-- <a href="{% url 'delete' project.id %}"class="btn btn-danger" role="button"> Delete</a> -->
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        {%endfor%}
+                    {%endif%}
+                        {%for project in key%}
+                        <li>
+                            <div class="thumbnail  col-xs-12" style="margin: 10px;">
+                                <div class="card-img">
+                                    {%for i in project.first_image%}
+                                    <img  src="{{i.project_img.url}}" alt="..." >
+                                    {%endfor%}
+                                </div>
                                 <div class="caption" id="filter">
-                                        <a><h3>{{project}}</h3></a>
+                                    <a>
+                                        <h3>{{project}}</h3>
+                                    </a>
                                     <p>You Can read more about this project.</p>
                                     <p> rated as {{project.project_rate}}</p>
-                                    <p> donated {{project.donation_percent}} % of target</p>
 
                                     <p>
-                                        <a href="{% url 'info' project.id%}" class="btn btn-primary" role="button">More..</a>
-                                        <a href="{% url 'rate' project.id %}" class="btn btn-default" role="button">Rate</a>
+                                        <a href="{% url 'info' project.id%}" class="btn btn-warning" role="button">More..</a>
+                                        <a href="{% url 'rate' project.id%}" class="btn btn-default" role="button">Rate</a>
                                         <!-- <a href="{% url 'delete' project.id %}"class="btn btn-danger" role="button"> Delete</a> -->
                                     </p>
                                 </div>
                             </div>
                         </li>
                         {% endfor %}
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block profile %}
+
 <style>
     li{
         height: 35px;
@@ -33,7 +34,7 @@
                 </div>
                 <div class="avatar col-lg-12">
                     <img class="col-lg-9 col-xs-12" style="margin-bottom:20px; border-radius: 50%;border: 15px solid #fcf2e4;width: 160px;height: 160px;" alt="" src="{{user.profile.profile_img.url}}">
-                    <a  class="col-lg-3 col-xs-12" style="    text-align: center; margin: auto;margin: 73px 0 0 9px;font-size: 30px;"  target="_blank" href="https://scripteden.com/">{{user.first_name}}</a>
+                    <a  class="col-lg-3 col-xs-12" style="    text-align: center; margin: auto;margin: 73px 0 0 9px;font-size: 30px;"  target="_blank" href="https://scripteden.com/">{{user.first_name}}{{user.last_name}}</a>
                 </div>
                 <div class="info">
                     <div class="title">
@@ -64,163 +65,46 @@
                         <div class="form-group"></div>
                     </div>
                     {% endif %}
-                    <div class="row form-group">
-                        <div class="col-xs-12">
-                            <button type="button"  class="b1 btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">EDIT</button>
-                        
-                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <!-- Start register form -->
-                                        <div class="container">
-                                                <h1>Edit Profile</h1>
-                                                  <hr>
-                                                <div class="row">
-                                                  <!-- left column -->
-                                                  <div class="col-md-3">
-                                                    <div class="text-center">
-                                                      <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                                                      <h6>Upload a different photo...</h6>
-                                                      
-                                                      <input type="file" class="form-control">
-                                                    </div>
-                                                  </div>
-                                                  
-                                                  <!-- edit form column -->
-                                                  <div class="col-md-9 personal-info">
-                                                    <div class="alert alert-info alert-dismissable">
-                                                      <a class="panel-close close" data-dismiss="alert">×</a> 
-                                                      <i class="fa fa-coffee"></i>
-                                                      This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                                                    </div>
-                                                    <h3>Personal info</h3>
-                                                    
-                                                    <form class="form-horizontal" role="form">
-                                                      <div class="form-group">
-                                                        <label class="col-lg-3 control-label">First name:</label>
-                                                        <div class="col-lg-8">
-                                                          <input class="form-control" type="text" value="Jane">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-lg-3 control-label">Last name:</label>
-                                                        <div class="col-lg-8">
-                                                          <input class="form-control" type="text" value="Bishop">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-lg-3 control-label">Company:</label>
-                                                        <div class="col-lg-8">
-                                                          <input class="form-control" type="text" value="">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-lg-3 control-label">Email:</label>
-                                                        <div class="col-lg-8">
-                                                          <input class="form-control" type="text" value="janesemail@gmail.com">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-lg-3 control-label">Time Zone:</label>
-                                                        <div class="col-lg-8">
-                                                          <div class="ui-select">
-                                                            <select id="user_time_zone" class="form-control">
-                                                              <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                                              <option value="Alaska">(GMT-09:00) Alaska</option>
-                                                              <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                                              <option value="Arizona">(GMT-07:00) Arizona</option>
-                                                              <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                                              <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                                              <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                                              <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                                            </select>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-md-3 control-label">Username:</label>
-                                                        <div class="col-md-8">
-                                                          <input class="form-control" type="text" value="janeuser">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-md-3 control-label">Password:</label>
-                                                        <div class="col-md-8">
-                                                          <input class="form-control" type="password" value="11111122333">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-md-3 control-label">Confirm password:</label>
-                                                        <div class="col-md-8">
-                                                          <input class="form-control" type="password" value="11111122333">
-                                                        </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                        <label class="col-md-3 control-label"></label>
-                                                        <div class="col-md-8">
-                                                          <input type="button" class="btn btn-primary" value="Save Changes">
-                                                          <span></span>
-                                                          <input type="reset" class="btn btn-default" value="Cancel">
-                                                        </div>
-                                                      </div>
-                                                    </form>
-                                                  </div>
-                                              </div>
-                                            </div>
-                                            <hr>
-                                        <!-- End register form -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                  </div>
                 <div class="bottom">
-                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/">
                         <i class="fa fa-twitter"></i>
                     </a>
                     <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/+ahmshahnuralam">
+                       href="https://plus.google.com/+">
                         <i class="fa fa-google-plus"></i>
                     </a>
                     <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://plus.google.com/shahnuralam">
+                       href="https://plus.google.com/">
                         <i class="fa fa-facebook"></i>
-                    </a>
-                    <a class="btn btn-warning btn-sm" rel="publisher" href="#">
-                        <i class="fa fa-behance"></i>
                     </a>
                 </div>
             </div>
 
         </div>
+	</div>
         <div class="col-lg-6 col-xs-12">
-            <a class="btn btn-success  btn-sm" style="border-radius: 50%" href="{% url 'home_page' %}">
+            <a class="btn btn-success  btn-sm" style="border-radius: 50%" href="home.html">
                 <i class="fa fa-plus-circle" style="font-size: 30px;"></i> 
             </a>Donate
-            <a href="{%url 'create_project' %}"><div class="btn btn-success">Create Project</div> </a>
             <hr>
+            <a href="{%url 'create_project' %}"><div class="btn btn-success">Create Project</div> </a>
             <hr>
             <div class="info_data_projects">
                 <div class="title"><h3>Projects</h3></div>
                 <ul style="    overflow-y: scroll;height: 150px;border: 1px solid #ddd;padding-left: 26px;padding-top: 5px;">
                     {%for i in projects%}
-                    <a href="{% url 'info' i.id%}">
-                        <li>
-                            {{i}}  <div class="rate text-right" style="display: inline-block;">50%</div>
-                        </li>
-
-                    </a>
+                    <a href="{% url 'info' i.id %}"><li>{{i}}<div class="rate text-right" style="display: inline-block;"> &nbsp; {{i.donation_percent}} %</div>
+                        </li></a>
                     {%endfor%}
-
-
+                    
 
                 </ul>
             </div>
-
-                </div>
+            
         </div>
-<a href="{% url 'logout'%}">log out</a>
+
     </div>
     
 </div>

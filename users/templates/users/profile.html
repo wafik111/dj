@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block profile %}
+{%if username.is_authenticated%}
+<style>
+    li{
+        height: 35px;
+        padding: 10px;
+        padding-left: 0px;
+        list-style: none;
+    }
+    a{
+        color:#888;
+        text-align: center;
+    }
+    .info_data_projects a:hover li{
+        background-color: #888;
+        transition: 1s;
+        color: #fff;
+        border-radius:20px; 
+        text-decoration: none;
+    }
+    span{
+        font-size: 17px;
+        color: #222;
+    }
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-xs-12" style="height: 700px; font-size: 20px;font-family: fantasy;padding: 26px;  border-right: 1px solid #ccc;box-shadow: -9px 1px 17px -9px #888 inset;">
+
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+               
+                <div class="content-section">
+                        <div class="media">
+                            <img class="rounded-circle account-img" src="{{user.profile.image.url}}" style="margin-bottom:20px; border-radius: 50%;border: 15px solid #fcf2e4;width: 160px;height: 160px;">
+                            <div class="media-body">
+                                <h1 class="account-heading">{{user.first_name}}</h1>
+                                <p class="text-secondry">{{user.email}}</p>
+                    
+                            </div>
+                            <div class="info">
+                                    <div class="title">
+                                        
+                                        <div class="form-group"></div>
+                                    </div>
+                                    <div class="desc">
+                                        <div class="form-group">Username : {{username}}<span></span></div>
+                                        <div class="form-group"></div>
+                                    </div>
+                                    <div class="desc">
+                                        <div class="form-group">Email : <span>{{user.email}}</span></div>
+                                        <div class="form-group"></div>
+                                    </div>
+                                    <div class="desc">
+                                        <div class="form-group">Phone : <span>{{data.phone}}</span></div>
+                                        <div class="form-group"></div>
+                                    </div>
+                                    <div class="desc">
+                                        <div class="form-group">country : <span>{{data.country}}</span></div>
+                                        <div class="form-group"></div>
+                                    </div>                                   
+                                 </div>
+                        </div>
+
+                       
+                    </div>
+                    
+                </div>
+                <div class="content-section">
+                        <form method="post" class="CP" enctype="multipart/form-data">
+                            <h1 class="text-center">Profile Info Update</h1>
+                            {% csrf_token %}
+                            <table class="form-group col-lg-12 col-xs-12">
+                              {{ u_form.as_table  }}
+                              {{ p_form.as_table }}
+                            </table>
+                            <br><br>
+                            <a href="{%url 'edit'%}"><button type="submit" class="btn btn-success">EDIT</button></a>
+                            
+                        </form>
+                    </div>
+            </div>
+
+
+        <div class="col-lg-6 col-xs-12">
+            <a class="btn btn-success  btn-sm" style="border-radius: 50%" href="{%url 'home_page'%}" target="_blank">
+                <i class="fa fa-plus-circle" style="font-size: 30px;"></i> 
+            </a>Donate
+            <hr>
+            <a href="{%url 'create_project' %}"><div class="btn btn-success">Create Project</div> </a>
+            <hr>
+            <div class="info_data_projects">
+                <div class="title"><h3>Projects</h3></div>
+                <ul style="    overflow-y: scroll;height: 300px;border: 1px solid #ddd;padding-left: 26px;padding-top: 5px;">
+                    {%for i in projects%}
+                    <a href="{% url 'info' i.id %}"><li>{{i}}<div class="rate text-right" style="display: inline-block;">50%</div>
+                        </li>
+                    </a>
+                    <hr>
+                    {%endfor%}
+                    
+                    
+
+                </ul>
+            </div>
+        </div>
+</div>
+</div>
+
+
+
+{%endif%}
+{% endblock profile %}

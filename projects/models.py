@@ -15,6 +15,8 @@ class Projects(models.Model):
     body = models.TextField()
     category_options = (('so', 'social'),
                         ('sp', 'sport'),
+                        ('he','health'),
+                        ('ch','charity')
                         )
     category = models.CharField(max_length=2, choices=category_options,
                                 default='social',
@@ -43,12 +45,13 @@ class Projects(models.Model):
         for donate in self.donations_set.all():
             total+= donate.donation
         return total < (self.target_money/4)
-
+    
     def donation_percent(self):
         total=0
         for donate in self.donations_set.all():
             total+= donate.donation
         return int((total/self.target_money)*100)
+
 
 
 

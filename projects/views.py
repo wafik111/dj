@@ -8,19 +8,22 @@ from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
 
 
-# @login_required()
+
 def home(request):
     f= Projects.objects.all()
-    return render(request,'projects/projects.html',{'key':f,})
+    tagss=Tags.objects.all()
+    print("tttttttttttttttttt",tagss)
 
+    return render(request,'projects/projects.html',{'key':f, 'tagss':tagss})
 
+def catagory_fun(request):
+    catagory_data= Projects.objects.all()
+    return render(request,'projects/sports.html',{'key_catagory':catagory_data})
 
 @login_required()
 def remove(request,id):
     Projects.objects.get(id=id).delete()
     return redirect(home)
-
-
 
 
 ###########################################################################################
@@ -147,7 +150,7 @@ def donate_project(request,id):
             donate.user = request.user.profile
             donate.project = donated_project
             donate.save()
-            return HttpResponse('thank you for your donation  ', )
+            return HttpResponse(' thank you for your donation  ', )
     else:
         form = DonateProject()
         context = {'form':form}

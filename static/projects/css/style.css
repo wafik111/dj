@@ -7,7 +7,6 @@ body
 .navbar {
     border-radius: 0px; 
     border: 0;
-    height: 50px;
 }
 .navbar-nav{
     float: right;
