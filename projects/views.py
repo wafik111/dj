@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 
+
 def home(request):
     f= Projects.objects.all()
     tagss=Tags.objects.all()
@@ -48,7 +49,7 @@ def project_info(request,id):
                    'form': comment_form ,'comments' : comments,'pic' : pics,}
         return render(request, 'projects/project_info.html', context)
 
-    ############
+    ##########################################################
 @login_required()
 def create_project(request,):
 

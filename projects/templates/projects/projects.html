@@ -76,7 +76,7 @@
         <div class="carousel-inner">
             <div class="carousel-caption">
                 <h1>Fundraising for the people and causes you care about</h1>
-                <a href="#ref_projects">
+                <a href="{% url 'create_project'%}">
                     <div class="start btn btn-default">Get Start</div>
                 </a>
             </div>
@@ -133,9 +133,9 @@
                                         <a>
                                             <h3>{{project}}</h3>
                                         </a>
+                                        <p> donated {{project.donation_percent}} % of target</p>
                                         <p>You Can read more about this project.</p>
                                         <p> rated as {{project.project_rate}}</p>
-                                        <p> donated {{project.donation_percent}} % of target</p>
     
                                         <p>
                                             <a href="{% url 'info' project.id%}" class="btn btn-warning" role="button">More..</a>
